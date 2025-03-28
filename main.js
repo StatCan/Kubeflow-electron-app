@@ -5,9 +5,9 @@ function createWindow () {
   // Create the browser window.
   const win = new BrowserWindow({
     webPreferences: {
-      nodeIntegration: false,  // For security, disable Node integration
-      contextIsolation: true,   // Enforce context isolation
-      sandbox: true, //restrict app 
+      nodeIntegration: false,  // For security, disable Node integration https://www.electronjs.org/docs/latest/tutorial/security#2-do-not-enable-nodejs-integration-for-remote-content
+      contextIsolation: true,   // Enforce context isolation https://www.electronjs.org/docs/latest/tutorial/context-isolation
+      sandbox: true, //restrict app https://www.electronjs.org/docs/latest/tutorial/sandbox
       icon: path.join(__dirname, 'assets', 'logo.png')
     }
   });
