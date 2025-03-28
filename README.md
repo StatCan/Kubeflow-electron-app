@@ -65,3 +65,6 @@ This application can be compiled as an executable by running the following comma
 ```bash
 npx electron-packager . ZoneElectronApp --platform=win32 --arch=x64 --icon=assets/logo.png
 ```
+
+## Security
+
