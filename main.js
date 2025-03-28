@@ -7,6 +7,7 @@ function createWindow () {
     webPreferences: {
       nodeIntegration: false,  // For security, disable Node integration
       contextIsolation: true,   // Enforce context isolation
+      sandbox: true, //restrict app 
       icon: path.join(__dirname, 'assets', 'logo.png')
     }
   });
