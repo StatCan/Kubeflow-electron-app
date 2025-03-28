@@ -1,5 +1,14 @@
 const { app, BrowserWindow, session } = require('electron');
+const { URL } = require('url')
 const path = require('path');
+
+// Allowed origins for this app
+const allowedOrigins = [
+  'https://zone.pages.cloud.statcan.ca', // Documentation page
+  'https://zone.statcan.ca', //The actual Zone page
+  'https://login.microsoftonline.com' // For authenticating login
+];
+
 
 function createWindow () {
   // Create the browser window.
@@ -44,6 +53,17 @@ session
 .fromPartition('Zone-partition')
 .setPermissionRequestHandler((webContents, permission, callback) => {
     return callback(false); // Deny all requests for permissions
+});
+
+// Navigation handler to prevent navigation to any website other than allowed ones:
+app.on('web-contents-created', (event, contents) => {
+  contents.on('will-navigate', (event, navigationUrl) => {
+    const parsedUrl = new URL(navigationUrl);
+    // Allow navigation if the origin is in allowedOrigins or the hostname ends with '.gc.ca'
+    if (!allowedOrigins.includes(parsedUrl.origin) && !parsedUrl.hostname.endsWith('.gc.ca')) {
+      event.preventDefault();
+    }
+  });
 });
 
 // Create main app window

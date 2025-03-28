@@ -81,6 +81,9 @@ The following cybersecurity best practices were implemented in this Electron app
 5. Using a dedicated session partition: This electron app uses an [ephemeral session](https://catonmat.net/what-is-an-ephemeral-browser) (like incognito), so it will never store your session data, cookies, or login. When you close the Electron app, you will have effectively logged out and will need to re-authenticate with Windows. This can be turned off if it is overkill, simple specify the session as persistent in `main.js`. 
     - partition: 'Zone-partition' -> partition: 'persist:Zone-partition'
 
+6. Disabled navigation to any address that is not whitelisted (or is not a government website ending in `.gc.ca`). Navigation is a common attack vector. If an attacker can convince your app to navigate away from its current page, they can possibly force your app to open web sites on the Internet. 
+    - Messages or helpfiles for R/Python packages might contain links to external websites that could attempt to run malicious code on the user's browser. 
+
 The following cybersecurity best practices have not yet been implemented in this Electron app:
 
 1. Defining a [Content Security Policy](https://www.electronjs.org/docs/latest/tutorial/security#7-define-a-content-security-policy): I am assuming The Zone has its own content security policy. I am not entirely sure it is allowed to overwrite this by intercepting the zone's CSP and overriding it !
