@@ -56,3 +56,11 @@ Clearly, the second browser makes for a nicer user experience.
 Needed: 
 
 - This app needs to be built before being shipped. This repo contains the source code only. 
+
+## How to Compile as an Executable
+
+This application can be compiled as an executable by running the following command from your project directory: 
+
+```bash
+npx electron-packager . ZoneElectronApp --platform=win32 --arch=x64 --icon=assets/logo.ico
+```
