@@ -1,5 +1,4 @@
 const { app, BrowserWindow, session } = require('electron');
-const { URL } = require('url');
 const path = require('path');
 
 function createWindow () {
@@ -11,6 +10,9 @@ function createWindow () {
       sandbox: true, //restrict app https://www.electronjs.org/docs/latest/tutorial/sandbox
       icon: path.join(__dirname, 'assets', 'logo.png'),
       partition: 'Zone-partition', // Use the custom session
+      webSecurity: true, //explicitly
+      allowRunningInsecureContent: false, //explicitly
+      experimentalFeatures: false
     }
   });
 
@@ -36,13 +38,14 @@ function createWindow () {
 }
 
 app.whenReady().then(() => {
-  // Set the permission request handler for the session before creating any windows
+
+// Set the permission request handler for the session before creating any windows
 session
 .fromPartition('Zone-partition')
 .setPermissionRequestHandler((webContents, permission, callback) => {
     return callback(false); // Deny all requests for permissions
 });
 
-
+// Create main app window
   createWindow();
 });
