@@ -1,12 +1,13 @@
 # The Zone Electron App
 
-The Zone Electron App is a minimal Electron-based application designed to provide a dedicated browsing experience for the Zone. It launches in a fullscreen windowed mode and loads the Zone site without any additional browser distractions, ensuring you get a clean, focused experience.
+The Zone Electron App is a minimal Electron-based application designed to provide a dedicated browsing experience for the Zone. It launches loads the Zone site without any additional browser distractions, ensuring you get a clean, focused experience.
 
 ## Features
 
 - **Dedicated Browser:** Access only the Zone website.
-- **Fullscreen Windowed Mode:** Automatically maximizes to fill the screen while remaining windowed.
+- **Fullscreen Windowed Mode:** Automatically maximizes to fill the screen while remaining windowed (with borders). Fullscreen is allowed, but not a good idea. 
 - **Custom Icon:** Displays a custom logo for a branded look.
+- Scripts can be opened in different screens as part of the same notebook. 
 
 ## Screenshots
 
@@ -34,7 +35,7 @@ Clearly, the second browser makes for a nicer user experience.
 
 1. **Clone this repository and cd to the root**
    ```bash
-   git clone https://github.com/yourusername/zone-electron-app.git
+   git clone https://gitlab.k8s.cloud.statcan.ca/os-collab/applications/the-zone-electron-application.git
    cd zone-electron-app
    ```
 
@@ -62,5 +63,5 @@ Needed:
 This application can be compiled as an executable by running the following command from your project directory: 
 
 ```bash
-npx electron-packager . ZoneElectronApp --platform=win32 --arch=x64 --icon=assets/logo.ico
+npx electron-packager . ZoneElectronApp --platform=win32 --arch=x64 --icon=assets/logo.png
 ```
