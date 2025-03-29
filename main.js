@@ -9,8 +9,21 @@ const allowedOrigins = [
   'https://login.microsoftonline.com' // For authenticating login
 ];
 
+let windowCount = 0;
+const maxWindows = 30; // Maximum allowed windows (failsafe)
 
-function createWindow () {
+function createWindow (myUrl) {
+
+  // Check window limit
+
+    // Check if we've reached the limit
+    if (windowCount >= maxWindows) {
+      console.log('Maximum window limit reached.');
+      return;
+    }
+
+    windowCount++; // Increment for a new window
+
   // Create the browser window.
   const win = new BrowserWindow({
     webPreferences: {
@@ -25,6 +38,7 @@ function createWindow () {
     }
   });
 
+
   // Remove the default menu to prevent default keyboard shortcuts (like reload, etc.)
   win.removeMenu();
 
@@ -32,7 +46,7 @@ function createWindow () {
   win.maximize();
 
   // Load the desired website
-  win.loadURL('https://zone.statcan.ca'); // Replace with your target URL
+  win.loadURL(myUrl); // Replace with your target URL
 
   // Intercept certain key events to disable Electron-specific shortcuts
   win.webContents.on('before-input-event', (event, input) => {
@@ -44,6 +58,20 @@ function createWindow () {
     }
     // Note: Avoid blocking all keys so that the website can use its own shortcuts.
   });
+
+  // Recursively set this? 
+  win.webContents.setWindowOpenHandler(({ url }) => {
+    // Create the new window using your custom function
+    createWindow(url);
+    // Prevent Electron from automatically creating a new window
+    return { action: 'deny' };
+  });
+
+    // When the window is closed, decrement the counter
+    win.on('closed', () => {
+      windowCount--;
+    });
+
 }
 
 app.whenReady().then(() => {
@@ -67,5 +95,5 @@ app.on('web-contents-created', (event, contents) => {
 });
 
 // Create main app window
-  createWindow();
+  createWindow('https://zone.statcan.ca');
 });
