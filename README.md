@@ -1,21 +1,21 @@
-# The Zone Electron App
+# Kubeflow Electron App
 
-The Zone Electron App is a minimal Electron-based application designed to provide a dedicated browsing experience for the Zone. It launches loads the Zone site without any additional browser distractions, ensuring you get a clean, focused experience.
+Kubeflow Electron App is a minimal Electron-based application designed to provide a dedicated browsing experience for Kubeflow. It launches loads Kubeflow site without any additional browser distractions, ensuring you get a clean, focused experience.
 
 ## Features
 
-- **Dedicated Browser:** Access only the Zone website.
+- **Dedicated Browser:** Access only Kubeflow website.
 - **Fullscreen Windowed Mode:** Automatically maximizes to fill the screen while remaining windowed (with borders). Fullscreen is allowed, but not a good idea. 
 - **Custom Icon:** Displays a custom logo for a branded look.
 - Scripts can be opened in different screens as part of the same notebook. 
 
 ## Screenshots
 
-The first image below shows how the Zone looks like with the default web browser (Microsoft Edge): 
+The first image below shows how Kubeflow looks like with the default web browser (Microsoft Edge): 
 
 ![](assets/browser_ex_2.png)
 
-The second image below shows how the Zone looks like with the Electron web browser:
+The second image below shows how Kubeflow looks like with the Electron web browser:
 
 ![](assets/browser_ex_1.png)
 
@@ -86,6 +86,6 @@ The following cybersecurity best practices were implemented in this Electron app
 
 The following cybersecurity best practices have not yet been implemented in this Electron app:
 
-1. Defining a [Content Security Policy](https://www.electronjs.org/docs/latest/tutorial/security#7-define-a-content-security-policy): I am assuming The Zone has its own content security policy. I am not entirely sure it is allowed to overwrite this by intercepting the zone's CSP and overriding it !
+1. Defining a [Content Security Policy](https://www.electronjs.org/docs/latest/tutorial/security#7-define-a-content-security-policy): I am assuming Kubeflow has its own content security policy. I am not entirely sure it is allowed to overwrite this by intercepting Kubeflow's CSP and overriding it !
 
 2. Popups are allowed: I like the fact that new scripts open in new windows! And I don't see the risk. 

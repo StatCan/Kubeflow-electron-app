@@ -2,5 +2,5 @@
     "allowedOrigins": [
        "example.com" // Update URLs here
     ], 
-    "domain": ".gc.ca" 
+    "domain": "" //allow some domain 
 }
