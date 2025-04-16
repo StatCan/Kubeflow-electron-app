@@ -1,0 +1,6 @@
+{
+    "allowedOrigins": [
+       "example.com" // Update URLs here
+    ], 
+    "domain": ".gc.ca" 
+}

@@ -1,13 +1,13 @@
 const { app, BrowserWindow, session } = require('electron');
 const { URL } = require('url')
 const path = require('path');
+const fs = require('fs');
 
 // Allowed origins for this app
-const allowedOrigins = [
-  'https://zone.pages.cloud.statcan.ca', // Documentation page
-  'https://zone.statcan.ca', //The actual Zone page
-  'https://login.microsoftonline.com' // For authenticating login
-];
+const configPath = path.join(__dirname, 'config.json');
+const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
+
+const allowedOrigins = config.allowedOrigins;
 
 let windowCount = 0;
 const maxWindows = 30; // Maximum allowed windows (failsafe)
@@ -87,13 +87,13 @@ session
 app.on('web-contents-created', (event, contents) => {
   contents.on('will-navigate', (event, navigationUrl) => {
     const parsedUrl = new URL(navigationUrl);
-    // Allow navigation if the origin is in allowedOrigins or the hostname ends with '.gc.ca'
-    if (!allowedOrigins.includes(parsedUrl.origin) && !parsedUrl.hostname.endsWith('.gc.ca')) {
+    // Allow navigation if the origin is in allowedOrigins
+    if (!allowedOrigins.includes(parsedUrl.origin)) {
       event.preventDefault();
     }
   });
 });
 
-// Create main app window
-  createWindow('https://zone.statcan.ca');
+// Create main app window - use home page as index
+  createWindow(config.allowedOrigins[0]);
 });
